@@ -9,9 +9,9 @@ module Algorithms
         while k > 0
           gap = hibbard_gap k
           p gap
-          0.upto(length - 1) do |i|
-            (0...length - gap).step(gap) do |i|
-              arr[i], arr[i + gap] = arr[i + gap], arr[i] if arr[i] >= arr[i + gap]
+          0.upto(length - 1) do 
+            (0...length - gap).step(gap) do |j|
+              arr[j], arr[j + gap] = arr[j + gap], arr[j] if arr[j] >= arr[j + gap]
             end
           end
           break if gap == 1
