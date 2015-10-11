@@ -39,5 +39,5 @@ module  Algorithms
   end
 end
 
-Algorithms::BubbleSort.bubble_sort([3,2,5,6,8,7]).map(&method(:p))
+p Algorithms::BubbleSort.bubble_sort([3,2,5,6,8,7])
 

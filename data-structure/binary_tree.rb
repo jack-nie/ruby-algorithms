@@ -56,6 +56,7 @@ module DS
       find_max node.right
     end
 
+    ##To be fixed...something got wrong!!!
     def delete tree_node = @root, value
       tree_node.right = delete(tree_node.right, value) if tree_node && tree_node.data > value
       tree_node.left  = delete(tree_node.left, value) if tree_node && tree_node.data  < value 

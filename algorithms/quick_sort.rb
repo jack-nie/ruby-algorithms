@@ -1,7 +1,5 @@
-require "enumerize"
 module Algorithms
   class QuickSort
-    extend Enumerize
     CUT_OFF = 3
     class << self
       def quick_sort arr
