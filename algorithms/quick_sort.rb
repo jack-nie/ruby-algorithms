@@ -1,5 +1,7 @@
+require "enumerize"
 module Algorithms
   class QuickSort
+    extend Enumerize
     CUT_OFF = 3
     class << self
       def quick_sort arr
@@ -8,7 +10,7 @@ module Algorithms
 
       
       #Not quite implemented, to be fixed, bug may come from the way pass a params
-      #via value or reference. That is the median method need a fixing?
+      #via value or reference. The median method needs a fixing?
       def quick_sort_two arr, left, right
         if (left + CUT_OFF  < right)
           p = median(arr, left, right)
@@ -66,7 +68,7 @@ module Algorithms
       #quick_sort_three, using the last element as pivot
       def quick_sort_three arr, left, right
         if left < right
-          pivot_idx = partition arr, left, right
+          pivot_idx = partition_one arr, left, right
           quick_sort_three arr, left, pivot_idx - 1
           quick_sort_three arr, pivot_idx + 1, right
         end
@@ -74,7 +76,7 @@ module Algorithms
       end
 
       #Lomuto partition 
-      def partition arr, left, right
+      def partition_one arr, left, right
         pivot = arr[right]
         idx   = left
         left.upto(right - 1) do |tmp_idx|
@@ -111,14 +113,22 @@ module Algorithms
         end
       end
 
+      def quick_sort_five arr
+        return [] if arr == []
+        x, *xs = *arr
+        left, right = xs.partition { |n| n < x }
+        quick_sort_five(left) + [x] + quick_sort_five(right)
+      end
+
     end
   end
 end
 
-Algorithms::QuickSort.sort([3, 5, 7, 2, 6, 24, 9, 8, 10, 12]).each(&method(:p))
+p Algorithms::QuickSort.sort([3, 5, 7, 2, 6, 24, 9, 8, 10, 12])
 p "##############"
-Algorithms::QuickSort.quick_sort_three([3, 5, 7, 2, 6, 9, 55, 8, 10, 12], 0 , 9).each(&method(:p))
+p Algorithms::QuickSort.quick_sort_three([3, 5, 7, 2, 6, 9, 55, 8, 10, 12], 0 , 9)
 p "##############"
-Algorithms::QuickSort.quick_sort_four([3, 5, 24, 2, 6, 9, 8, 10, 12], 0 , 8).each(&method(:p))
+p Algorithms::QuickSort.quick_sort_four([3, 5, 24, 2, 6, 9, 8, 10, 12], 0 , 8)
 p "##############"
-Algorithms::QuickSort.insertion_sort([3, 5, 2, 6, 9, 8, 10, 12], 8).each(&method(:p))
+p Algorithms::QuickSort.insertion_sort([3, 5, 2, 6, 9, 8, 10, 12], 8)
+p Algorithms::QuickSort.quick_sort_five([3, 5, 2, 6, 9, 8, 10, 12])
