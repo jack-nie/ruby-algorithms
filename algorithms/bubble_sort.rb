@@ -18,7 +18,6 @@ module  Algorithms
         arr
       end
 
-
       def bubble_sort_one arr
         length = arr.length
         loop do
