@@ -1,6 +1,6 @@
 require_relative 'deque'
 module DS
-  class Quene
+  class Queue
     include Enumerable
 
     def initialize arr=[]
